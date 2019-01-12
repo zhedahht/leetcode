@@ -20,7 +20,7 @@ func isNumber(s string) bool {
     
     if len(segs) == 2 {
         exponent := removeSign(segs[1])
-        if len(segs[0]) == 0 || len(exponent) == 0 || !isUnsignedDigits(exponent) {
+        if len(exponent) == 0 || !isUnsignedDigits(exponent) {
             return false
         }
     }
