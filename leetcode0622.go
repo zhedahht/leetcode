@@ -8,8 +8,7 @@ type MyCircularQueue struct {
 	queue      []int
 	frontIndex int
 	rearIndex  int
-	empty      bool
-	full       bool
+	length     int
 }
 
 /** Initialize your data structure here. Set the size of the queue to be k. */
@@ -19,8 +18,7 @@ func Constructor0622(k int) MyCircularQueue {
 	circularQueue.queue = make([]int, k)
 	circularQueue.frontIndex = 0
 	circularQueue.rearIndex = -1
-	circularQueue.empty = false
-	circularQueue.full = false
+	circularQueue.length = 0
 	return circularQueue
 }
 
@@ -32,11 +30,7 @@ func (this *MyCircularQueue) EnQueue(value int) bool {
 
 	this.rearIndex = (this.rearIndex + 1) % len(this.queue)
 	this.queue[this.rearIndex] = value
-
-	this.empty = false
-	if (this.rearIndex+1)%len(this.queue) == this.frontIndex {
-		this.full = true
-	}
+	this.length++
 
 	return true
 }
@@ -48,11 +42,7 @@ func (this *MyCircularQueue) DeQueue() bool {
 	}
 
 	this.frontIndex = (this.frontIndex + 1) % len(this.queue)
-
-	this.full = false
-	if (this.rearIndex+1)%len(this.queue) == this.frontIndex {
-		this.empty = true
-	}
+	this.length--
 
 	return true
 }
@@ -77,12 +67,12 @@ func (this *MyCircularQueue) Rear() int {
 
 /** Checks whether the circular queue is empty or not. */
 func (this *MyCircularQueue) IsEmpty() bool {
-	return this.empty
+	return this.length == 0
 }
 
 /** Checks whether the circular queue is full or not. */
 func (this *MyCircularQueue) IsFull() bool {
-	return this.full
+	return this.length == len(this.queue)
 }
 
 /**
