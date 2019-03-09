@@ -15,28 +15,28 @@ func validTree(n int, edges [][]int) bool {
 	}
 
 	for _, edge := range edges {
-		parent1 := getParent(parents, edge[0])
-		parent2 := getParent(parents, edge[1])
+		parent1 := getParent261(parents, edge[0])
+		parent2 := getParent261(parents, edge[1])
 		if parent1 == parent2 {
 			return false
 		}
 
-		union(parents, parent1, parent2)
+		union261(parents, parent1, parent2)
 	}
 
 	return true
 }
 
-func getParent(parents []int, node int) int {
+func getParent261(parents []int, node int) int {
 	parent := parents[node]
 	if parent != node {
-		parent = getParent(parents, parent)
+		parent = getParent261(parents, parent)
 		parents[node] = parent
 	}
 
 	return parent
 }
 
-func union(parents []int, node1, node2 int) {
+func union261(parents []int, node1, node2 int) {
 	parents[node1] = node2
 }
