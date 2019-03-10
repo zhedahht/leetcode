@@ -19,13 +19,10 @@ func shortestDistance317(grid [][]int) int {
 	}
 
 	minDists := make([][]int, len(grid))
-	for i, _ := range minDists {
-		minDists[i] = make([]int, len(grid[0]))
-	}
-
 	visited := make([][]bool, len(grid))
 	reached := make([][]bool, len(grid))
-	for i, _ := range visited {
+	for i, _ := range grid {
+		minDists[i] = make([]int, len(grid[0]))
 		visited[i] = make([]bool, len(grid[0]))
 		reached[i] = make([]bool, len(grid[0]))
 		for j, _ := range reached[i] {
