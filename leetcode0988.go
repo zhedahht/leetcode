@@ -41,13 +41,9 @@ func helper988(root *TreeNode, path []int, min string) string {
 }
 
 func getSmaller(str, min string) string {
-	if len(min) == 0 {
+	if len(min) == 0 || strings.Compare(min, str) > 0 {
 		return str
 	}
 
-	if strings.Compare(min, str) <= 0 {
-		return min
-	}
-
-	return str
+	return min
 }
