@@ -11,7 +11,7 @@ type WordDistance struct {
 }
 
 // NOTE: it should be Constructor.
-// Rename to function to avoid name conflicts with other.
+// Rename the function to avoid name conflicts with other.
 func Constructor244(words []string) WordDistance {
 	wordToIndices := make(map[string][]int)
 	for i, word := range words {
@@ -34,9 +34,7 @@ func (this *WordDistance) Shortest(word1 string, word2 string) int {
 	minDist := 0x7fffffff
 	for i, j := 0, 0; true; {
 		dist := int(math.Abs(float64(indices1[i]) - float64(indices2[j])))
-		if dist < minDist {
-			minDist = dist
-		}
+		minDist = int(math.Min(float64(minDist), float64(dist)))
 
 		if i == len(indices1)-1 && j == len(indices2)-1 {
 			break
