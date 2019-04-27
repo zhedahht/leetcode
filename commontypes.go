@@ -5,6 +5,14 @@ Common type definitions, such as TreeNode, for LeetCode solutions
 package leetcode
 
 /**
+ * Definition for singly-linked list.
+ */
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+/**
  * Definition for a binary tree node.
  */
 type TreeNode struct {
