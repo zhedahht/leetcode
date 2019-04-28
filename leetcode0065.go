@@ -1,5 +1,5 @@
 /*
-LeetCode 95: https://leetcode.com/problems/valid-number/
+LeetCode 65: https://leetcode.com/problems/valid-number/
 */
 
 package leetcode
