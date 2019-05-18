@@ -5,7 +5,6 @@ LeetCode 51: https://leetcode.com/problems/n-queens/
 package leetcode
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -36,9 +35,9 @@ func generateBoard(nums []int) []string {
 		var str string
 		for i := 0; i < len(nums); i++ {
 			if i == num {
-				str = fmt.Sprintf("%sQ", str)
+				str = str + "Q"
 			} else {
-				str = fmt.Sprintf("%s.", str)
+				str = str + "."
 			}
 		}
 
