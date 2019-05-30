@@ -13,12 +13,9 @@ func helper89(n int) []int {
 		return make([]int, 1)
 	}
 
-	less := helper89(n - 1)
-	result := make([]int, len(less))
-	copy(result, less)
-
-	for i := len(less) - 1; i >= 0; i-- {
-		result = append(result, (1<<uint((n-1)))|less[i])
+	result := helper89(n - 1)
+	for i := len(result) - 1; i >= 0; i-- {
+		result = append(result, (1<<uint((n-1)))|result[i])
 	}
 
 	return result
