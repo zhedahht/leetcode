@@ -10,7 +10,7 @@ import "math"
 // Rename the function name to resolve the name conflicts with other solutions.
 func shortestDistance317(grid [][]int) int {
 	pos := make([][]int, 0)
-	for row, _ := range grid {
+	for row := range grid {
 		for col, val := range grid[row] {
 			if val == 1 {
 				pos = append(pos, []int{row, col})
@@ -21,11 +21,11 @@ func shortestDistance317(grid [][]int) int {
 	minDists := make([][]int, len(grid))
 	visited := make([][]bool, len(grid))
 	reached := make([][]bool, len(grid))
-	for i, _ := range grid {
+	for i := range grid {
 		minDists[i] = make([]int, len(grid[0]))
 		visited[i] = make([]bool, len(grid[0]))
 		reached[i] = make([]bool, len(grid[0]))
-		for j, _ := range reached[i] {
+		for j := range reached[i] {
 			reached[i][j] = true
 		}
 	}
@@ -35,8 +35,8 @@ func shortestDistance317(grid [][]int) int {
 		dist := 0
 		queue1 := make([][]int, 0)
 		queue2 := make([][]int, 0)
-		for i, _ := range visited {
-			for j, _ := range visited[i] {
+		for i := range visited {
+			for j := range visited[i] {
 				visited[i][j] = false
 			}
 		}
@@ -65,15 +65,15 @@ func shortestDistance317(grid [][]int) int {
 			}
 		}
 
-		for i, _ := range reached {
-			for j, _ := range reached[i] {
+		for i := range reached {
+			for j := range reached[i] {
 				reached[i][j] = reached[i][j] && visited[i][j]
 			}
 		}
 	}
 
 	minDist := 0x7FFFFFFF
-	for row, _ := range minDists {
+	for row := range minDists {
 		for col, val := range minDists[row] {
 			if grid[row][col] == 0 && reached[row][col] {
 				minDist = int(math.Min(float64(minDist), float64(val)))

@@ -10,7 +10,7 @@ func uniquePaths(m int, n int) int {
 	}
 
 	dp := make([]int, n)
-	for i, _ := range dp {
+	for i := range dp {
 		dp[i] = 1
 	}
 

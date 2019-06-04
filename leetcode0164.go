@@ -21,12 +21,12 @@ func maximumGap(nums []int) int {
 	total := max - min + 1
 	bucketRange := float64(total) / float64(len(nums)-1)
 	rangeMins := make([]int, len(nums)-1)
-	for i, _ := range rangeMins {
+	for i := range rangeMins {
 		rangeMins[i] = int((^(uint(0))) >> 1)
 	}
 
 	rangeMaxs := make([]int, len(nums)-1)
-	for i, _ := range rangeMaxs {
+	for i := range rangeMaxs {
 		rangeMaxs[i] = 0
 	}
 

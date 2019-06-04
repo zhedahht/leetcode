@@ -11,7 +11,7 @@ import (
 
 func minTotalDistance(grid [][]int) int {
 	rows, cols := make([]int, 0), make([]int, 0)
-	for i, _ := range grid {
+	for i := range grid {
 		for j, val := range grid[i] {
 			if val == 1 {
 				rows = append(rows, i)

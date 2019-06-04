@@ -25,36 +25,36 @@ func solveSudoku(board [][]byte) {
 func helper37(board [][]byte, i, j int, rows, cols, blocks []map[byte]bool) bool {
 	if i == 9 {
 		return true
-	} else {
-		nextI, nextJ := i, j+1
-		if j == 8 {
-			nextI, nextJ = i+1, 0
-		}
+	}
 
-		if board[i][j] != '.' {
-			return helper37(board, nextI, nextJ, rows, cols, blocks)
-		}
+	nextI, nextJ := i, j+1
+	if j == 8 {
+		nextI, nextJ = i+1, 0
+	}
 
-		done := false
-		blockIndex := (i/3)*3 + j/3
-		for n := byte('1'); n <= byte('9') && !done; n++ {
-			_, existRows := rows[i][n]
-			_, existCols := cols[j][n]
-			_, existBlocks := blocks[blockIndex][n]
-			if !existRows && !existCols && !existBlocks {
-				rows[i][n], cols[j][n], blocks[blockIndex][n] = true, true, true
-				board[i][j] = n
-				done = helper37(board, nextI, nextJ, rows, cols, blocks)
+	if board[i][j] != '.' {
+		return helper37(board, nextI, nextJ, rows, cols, blocks)
+	}
 
-				if done {
-					return true
-				}
+	done := false
+	blockIndex := (i/3)*3 + j/3
+	for n := byte('1'); n <= byte('9') && !done; n++ {
+		_, existRows := rows[i][n]
+		_, existCols := cols[j][n]
+		_, existBlocks := blocks[blockIndex][n]
+		if !existRows && !existCols && !existBlocks {
+			rows[i][n], cols[j][n], blocks[blockIndex][n] = true, true, true
+			board[i][j] = n
+			done = helper37(board, nextI, nextJ, rows, cols, blocks)
 
-				board[i][j] = '.'
-				delete(rows[i], n)
-				delete(cols[j], n)
-				delete(blocks[blockIndex], n)
+			if done {
+				return true
 			}
+
+			board[i][j] = '.'
+			delete(rows[i], n)
+			delete(cols[j], n)
+			delete(blocks[blockIndex], n)
 		}
 	}
 
