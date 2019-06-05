@@ -37,13 +37,11 @@ func helper124(root *TreeNode) (int, int, int) {
 	}
 
 	rootLeft, rootRight := root.Val, root.Val
-	leftMax := int(math.Max(float64(leftLeft), float64(leftRight)))
-	if leftMax > 0 {
+	if leftMax := int(math.Max(float64(leftLeft), float64(leftRight))); leftMax > 0 {
 		rootLeft += leftMax
 	}
 
-	rightMax := int(math.Max(float64(rightLeft), float64(rightRight)))
-	if rightMax > 0 {
+	if rightMax := int(math.Max(float64(rightLeft), float64(rightRight))); rightMax > 0 {
 		rootRight += rightMax
 	}
 
