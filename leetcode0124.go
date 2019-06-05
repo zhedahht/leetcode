@@ -46,12 +46,12 @@ func helper124(root *TreeNode) (int, int, int) {
 	}
 
 	result := rootLeft + rootRight - root.Val
-	if root.Left != nil {
-		result = int(math.Max(float64(result), float64(leftResult)))
+	if root.Left != nil && leftResult > result {
+		result = leftResult
 	}
 
-	if root.Right != nil {
-		result = int(math.Max(float64(result), float64(rightResult)))
+	if root.Right != nil && rightResult > result {
+		result = rightResult
 	}
 
 	return rootLeft, rootRight, result
