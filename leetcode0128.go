@@ -4,7 +4,8 @@ LeetCode 128: https://leetcode.com/problems/longest-consecutive-sequence/submiss
 
 package leetcode
 
-func longestConsecutive(nums []int) int {
+// NOTE: The name should be longestConsecutive, rename it to avoid conficts with 298.
+func longestConsecutive128(nums []int) int {
 	parentMap, countMap := make(map[int]int), make(map[int]int)
 	for _, num := range nums {
 		if _, exists := parentMap[num]; exists {
