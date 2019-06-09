@@ -5,6 +5,31 @@ LeetCode 135: https://leetcode.com/problems/candy/
 package leetcode
 
 func candy(ratings []int) int {
+	counts := make([]int, len(ratings))
+	for i := 0; i < len(ratings); i++ {
+		if i > 0 && ratings[i] > ratings[i-1] {
+			counts[i] = counts[i-1] + 1
+		} else {
+			counts[i] = 1
+		}
+	}
+
+	for i := len(ratings) - 2; i >= 0; i-- {
+		if ratings[i] > ratings[i+1] && counts[i] < counts[i+1]+1 {
+			counts[i] = counts[i+1] + 1
+		}
+	}
+
+	result := 0
+	for _, c := range counts {
+		result += c
+	}
+
+	return result
+}
+
+/*
+func candy(ratings []int) int {
 	queue1, queue2, counts := make([]int, 0), make([]int, 0), make([]int, len(ratings))
 	for i, r := range ratings {
 		if (i == 0 || r <= ratings[i-1]) && (i == len(ratings)-1 || r <= ratings[i+1]) {
@@ -39,3 +64,4 @@ func candy(ratings []int) int {
 
 	return result
 }
+*/
