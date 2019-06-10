@@ -41,15 +41,11 @@ func helper140(s string, index int, root, node *trieNode, word string, memo [][]
 		ch := s[index]
 		word, node = fmt.Sprintf("%s%c", word, ch), node.children[int(ch-'a')]
 		if node != nil && node.isWord {
-			var next []string
-			if memo[index+1] != nil {
-				next = memo[index+1]
-			} else {
-				next = helper140(s, index+1, root, root, "", memo)
-				memo[index+1] = next
+			if memo[index+1] == nil {
+				memo[index+1] = helper140(s, index+1, root, root, "", memo)
 			}
 
-			for _, n := range next {
+			for _, n := range memo[index+1] {
 				if n == "" {
 					result = append(result, word)
 				} else {
