@@ -45,10 +45,7 @@ func findWords(board [][]byte, words []string) []string {
 	return result
 }
 
-func helper212(board [][]byte, i, j int,
-	visited [][]bool, node *trieNode, word string,
-	set map[string]bool) {
-
+func helper212(board [][]byte, i, j int, visited [][]bool, node *trieNode, word string, set map[string]bool) {
 	word = fmt.Sprintf("%s%c", word, board[i][j])
 	visited[i][j] = true
 	node = node.children[int(board[i][j]-'a')]
