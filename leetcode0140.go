@@ -8,11 +8,7 @@ import (
 	"fmt"
 )
 
-type trieNode struct {
-	children [26]*trieNode
-	isWord   bool
-}
-
+// NOTE: trieNode is defined in commontyeps.go.
 func wordBreak(s string, wordDict []string) []string {
 	root := &trieNode{}
 	for _, word := range wordDict {

@@ -44,3 +44,8 @@ func (n *NestedInteger) Add(elem NestedInteger) {}
 // The list length is zero if this NestedInteger holds a single integer
 // You can access NestedInteger's List element directly if you want to modify it
 func (n NestedInteger) GetList() []*NestedInteger { return nil }
+
+type trieNode struct {
+	children [26]*trieNode
+	isWord   bool
+}
