@@ -11,44 +11,38 @@ func maximumGap(nums []int) int {
 		return 0
 	}
 
-	min := int((^(uint(0))) >> 1)
-	max := 0
+	min, max := nums[0], nums[0]
 	for _, num := range nums {
 		min = int(math.Min(float64(min), float64(num)))
 		max = int(math.Max(float64(max), float64(num)))
 	}
 
-	total := max - min + 1
-	bucketRange := float64(total) / float64(len(nums)-1)
-	rangeMins := make([]int, len(nums)-1)
-	for i := range rangeMins {
-		rangeMins[i] = int((^(uint(0))) >> 1)
-	}
-
-	rangeMaxs := make([]int, len(nums)-1)
-	for i := range rangeMaxs {
-		rangeMaxs[i] = 0
+	length := float64(max-min+1) / float64(len(nums))
+	mins, maxs, hits := make([]int, len(nums)), make([]int, len(nums)), make([]bool, len(nums))
+	for i := range nums {
+		mins[i], maxs[i] = 0x7fffffff, 0
 	}
 
 	for _, num := range nums {
-		index := int(float64(num-min) / bucketRange)
-		rangeMins[index] = int(math.Min(float64(rangeMins[index]), float64(num)))
-		rangeMaxs[index] = int(math.Max(float64(rangeMaxs[index]), float64(num)))
+		index := int(float64(num-min) / length)
+		mins[index] = int(math.Min(float64(mins[index]), float64(num)))
+		maxs[index] = int(math.Max(float64(maxs[index]), float64(num)))
+		hits[index] = true
 	}
 
-	gapMax := rangeMaxs[0] - rangeMins[0]
-	prevMax := rangeMaxs[0]
-	for i := 1; i < len(nums)-1; i++ {
-		if rangeMaxs[i] >= rangeMins[i] {
-			gap := rangeMaxs[i] - rangeMins[i]
-			gapMax = int(math.Max(float64(gapMax), float64(gap)))
+	i := 0
+	for ; i < len(nums) && !hits[i]; i++ {
+	}
 
-			gap = rangeMins[i] - prevMax
-			gapMax = int(math.Max(float64(gapMax), float64(gap)))
-
-			prevMax = rangeMaxs[i]
+	min, max = mins[i], maxs[i]
+	result := max - min
+	for i++; i < len(nums); i++ {
+		if hits[i] {
+			result = int(math.Max(float64(result), float64(mins[i]-max)))
+			min, max = mins[i], maxs[i]
 		}
 	}
 
-	return gapMax
+	result = int(math.Max(float64(result), float64(max-min)))
+	return result
 }
