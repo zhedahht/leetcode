@@ -9,7 +9,7 @@ import "math"
 func maxPoints(points [][]int) int {
 	result := 0
 	for i, p1 := range points {
-		max, sameP, sameX := 0, 1, 0
+		sameP, sameX := 1, 0
 		slopeCounts := make(map[float64]int)
 		for j := 0; j < i; j++ {
 			p2 := points[j]
@@ -27,13 +27,10 @@ func maxPoints(points [][]int) int {
 			}
 		}
 
-		max = sameX
+		result = int(math.Max(float64(result), float64(sameP+sameX)))
 		for _, count := range slopeCounts {
-			max = int(math.Max(float64(max), float64(count)))
+			result = int(math.Max(float64(result), float64(count+sameP)))
 		}
-
-		max += sameP
-		result = int(math.Max(float64(result), float64(max)))
 	}
 
 	return result
