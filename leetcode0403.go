@@ -21,7 +21,7 @@ func canCross(stones []int) bool {
 				dists := [3]int{dist, dist - 1, dist + 1}
 				for _, d := range dists {
 					if _, exists := dp[j][d]; exists {
-						dp[i][stones[i]-stones[j]] = true
+						dp[i][dist] = true
 						break
 					}
 				}
