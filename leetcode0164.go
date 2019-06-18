@@ -30,12 +30,11 @@ func maximumGap(nums []int) int {
 		hits[index] = true
 	}
 
-	i := 0
+	result, i := 0, 0
 	for ; i < len(nums) && !hits[i]; i++ {
 	}
 
 	min, max = mins[i], maxs[i]
-	result := max - min
 	for i++; i < len(nums); i++ {
 		if hits[i] {
 			result = int(math.Max(float64(result), float64(mins[i]-max)))
@@ -43,6 +42,5 @@ func maximumGap(nums []int) int {
 		}
 	}
 
-	result = int(math.Max(float64(result), float64(max-min)))
 	return result
 }
