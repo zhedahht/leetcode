@@ -17,7 +17,8 @@ type BSTIterator struct {
 	stack []*TreeNode
 }
 
-func Constructor(root *TreeNode) BSTIterator {
+// NOTE: The function name should be Constructor. Rename is to avoid conflicts.
+func Constructor173(root *TreeNode) BSTIterator {
 	return BSTIterator{
 		node: root,
 	}
