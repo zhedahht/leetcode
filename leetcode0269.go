@@ -35,25 +35,32 @@ func alienOrder(words []string) string {
 		}
 	}
 
-	result := ""
-	for len(charToPrev) > 0 {
-		found := false
-		for ch, prevs := range charToPrev {
-			if len(prevs) == 0 {
-				result = fmt.Sprintf("%s%c", result, ch)
-				found = true
-				delete(charToPrev, ch)
+	var queue []byte
+	for ch, prevs := range charToPrev {
+		if len(prevs) == 0 {
+			delete(charToPrev, ch)
+			queue = append(queue, ch)
+		}
+	}
 
-				for next := range charToNext[ch] {
-					prevsOfNext := charToPrev[next]
-					delete(prevsOfNext, ch)
-				}
+	result := ""
+	for len(queue) > 0 {
+		ch := queue[0]
+		result = fmt.Sprintf("%s%c", result, ch)
+		queue = queue[1:]
+
+		for next := range charToNext[ch] {
+			prevsOfNext := charToPrev[next]
+			delete(prevsOfNext, ch)
+			if len(prevsOfNext) == 0 {
+				delete(charToPrev, next)
+				queue = append(queue, next)
 			}
 		}
+	}
 
-		if !found {
-			return ""
-		}
+	if len(charToPrev) > 0 {
+		return ""
 	}
 
 	return result
