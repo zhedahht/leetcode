@@ -19,7 +19,7 @@ func numUniqueEmails(emails []string) int {
 func normalizeEmail(email string) string {
 	chArray := make([]byte, 0)
 	i := 0
-	for ; i < len(email); i++ {
+	for ; i < len(email) && email[i] != '@'; i++ {
 		ch := email[i]
 		if ch == '.' {
 			continue
