@@ -4,13 +4,15 @@ LeetCode 917: https://leetcode.com/problems/reverse-only-letters/
 
 package leetcode
 
+import "unicode"
+
 func reverseOnlyLetters(S string) string {
 	chArray := []byte(S)
 	i, j := 0, len(S)-1
 	for i < j {
-		if !isLetter(chArray[i]) {
+		if !unicode.IsLetter(rune(chArray[i])) {
 			i++
-		} else if !isLetter(chArray[j]) {
+		} else if !unicode.IsLetter(rune(chArray[j])) {
 			j--
 		} else {
 			chArray[i], chArray[j] = chArray[j], chArray[i]
@@ -20,12 +22,4 @@ func reverseOnlyLetters(S string) string {
 	}
 
 	return string(chArray)
-}
-
-func isLetter(ch byte) bool {
-	if (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') {
-		return true
-	}
-
-	return false
 }
