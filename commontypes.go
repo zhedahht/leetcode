@@ -49,3 +49,9 @@ type trieNode struct {
 	children [26]*trieNode
 	isWord   bool
 }
+
+// Interval is the definition for an Interval.
+type Interval struct {
+	Start int
+	End   int
+}
