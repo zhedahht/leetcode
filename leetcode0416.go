@@ -22,8 +22,6 @@ func canPartition(nums []int) bool {
 		for j := sum; j >= 0; j-- {
 			dp[j] = dp[j] || (j >= nums[i] && dp[j-nums[i]])
 		}
-
-		dp[0] = false
 	}
 
 	return dp[sum]
