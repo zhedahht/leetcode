@@ -12,9 +12,6 @@ func strangePrinter(s string) int {
 	dp := make([][]int, len(s))
 	for i := range dp {
 		dp[i] = make([]int, len(s))
-	}
-
-	for i := range s {
 		dp[i][i] = 1
 	}
 
