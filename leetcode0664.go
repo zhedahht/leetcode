@@ -25,7 +25,7 @@ func strangePrinter(s string) int {
 			for k := i + 1; k <= j; k++ {
 				turns := dp[i][k-1] + dp[k][j]
 				if s[k-1] == s[j] {
-					turns -= 1
+					turns--
 				}
 
 				if dp[i][j] > turns {
