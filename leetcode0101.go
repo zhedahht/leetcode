@@ -28,6 +28,5 @@ func isSame101(node1, node2 *TreeNode) bool {
 }
 
 func isSymmetric(root *TreeNode) bool {
-
 	return isSame101(root, root)
 }
