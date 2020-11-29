@@ -55,3 +55,11 @@ type Interval struct {
 	Start int
 	End   int
 }
+
+// TreeNodeWithNext is renamed the tree node type for LeetCode 116/117
+type TreeNodeWithNext struct {
+	Val   int
+	Left  *TreeNodeWithNext
+	Right *TreeNodeWithNext
+	Next  *TreeNodeWithNext
+}
