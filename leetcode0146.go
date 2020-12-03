@@ -21,7 +21,8 @@ type LRUCache struct {
 }
 
 // Constructor createa a Least Recently Used (LRU) cache
-func Constructor(capacity int) LRUCache {
+// The function name should be Constructor. Renamed it to avoid conflicts.
+func Constructor146(capacity int) LRUCache {
 	lruCache := LRUCache{
 		capacity: capacity,
 		cache:    make(map[int]*LRUCacheListNode),
