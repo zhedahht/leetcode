@@ -17,12 +17,10 @@ func sequenceReconstruction(org []int, seqs [][]int) bool {
 				return false
 			}
 
-			if i == 0 {
-				continue
+			if i > 0 {
+				nexts[seq[i-1]] = append(nexts[seq[i-1]], seq[i])
+				inDegrees[seq[i]]++
 			}
-
-			nexts[seq[i-1]] = append(nexts[seq[i-1]], seq[i])
-			inDegrees[seq[i]]++
 		}
 	}
 
