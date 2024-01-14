@@ -1,5 +1,5 @@
 /*
-LeetCode 606:https://leetcode.com/problems/construct-string-from-binary-tree/description/
+LeetCode 606: https://leetcode.com/problems/construct-string-from-binary-tree/description/
 */
 
 package leetcode
