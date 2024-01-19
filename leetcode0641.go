@@ -11,7 +11,8 @@ type MyCircularDeque struct {
 	length     int
 }
 
-func Constructor(k int) MyCircularDeque {
+// The function name should be Constructor. It's renamed to avoid conflicts.
+func Constructor0641(k int) MyCircularDeque {
 	return MyCircularDeque{
 		data:       make([]int, k),
 		frontIndex: 0,

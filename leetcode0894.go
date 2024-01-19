@@ -15,7 +15,7 @@ package leetcode
 func allPossibleFBT(N int) []*TreeNode {
 	numToFBT := make(map[int][]*TreeNode)
 	numToFBT[0] = make([]*TreeNode, 0)
-	numToFBT[1] = []*TreeNode{&TreeNode{Val: 0}}
+	numToFBT[1] = []*TreeNode{{Val: 0}}
 	helper894(N, numToFBT)
 	return numToFBT[N]
 }

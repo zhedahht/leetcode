@@ -41,7 +41,7 @@ func addBinary(a string, b string) string {
 	}
 
 	if result[0] != '1' {
-		result = result[1:len(result)]
+		result = result[1:]
 	}
 
 	return string(result)

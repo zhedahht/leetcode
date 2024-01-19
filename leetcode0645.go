@@ -17,7 +17,7 @@ func findErrorNums(nums []int) []int {
 				break
 			} else {
 				nums[val-1] = val
-				idx, val = idx, newVal
+				val = newVal
 			}
 		}
 
