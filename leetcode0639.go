@@ -65,7 +65,6 @@ func numDecodingsTwoDigits(r []rune) int {
 	}
 
 	val, _ := strconv.Atoi(string(r))
-	//fmt.Println(val)
 	if val >= 10 && val <= 26 {
 		return 1
 	}
