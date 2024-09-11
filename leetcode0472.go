@@ -8,9 +8,8 @@ func findAllConcatenatedWordsInADict(words []string) []string {
 	root := buildTrie(words)
 	result := make([]string, 0)
 	found := make(map[string]bool)
-	notFound := make(map[string]bool)
 	for _, word := range words {
-		if isConcatenatedWord(word, root, root, found, notFound) {
+		if isConcatenatedWord(word, root, root, found) {
 			result = append(result, word)
 		}
 	}
@@ -18,9 +17,9 @@ func findAllConcatenatedWordsInADict(words []string) []string {
 	return result
 }
 
-func isConcatenatedWord(word string, root *trieNode, node *trieNode, found, notFound map[string]bool) bool {
+func isConcatenatedWord(word string, root *trieNode, node *trieNode, found map[string]bool) bool {
 	count := 0
-	result := helper472(word, root, root, 0, found, notFound, &count)
+	result := helper472(word, root, root, 0, found, &count)
 	if result {
 		found[word] = result
 	}
@@ -28,7 +27,7 @@ func isConcatenatedWord(word string, root *trieNode, node *trieNode, found, notF
 	return result
 }
 
-func helper472(word string, root *trieNode, node *trieNode, index int, found, notFound map[string]bool, count *int) bool {
+func helper472(word string, root *trieNode, node *trieNode, index int, found map[string]bool, count *int) bool {
 	if index == len(word) {
 		if node.isWord {
 			*count++
@@ -47,27 +46,21 @@ func helper472(word string, root *trieNode, node *trieNode, index int, found, no
 	}
 
 	node = node.children[word[index]-'a']
-	if helper472(word, root, node, index+1, found, notFound, count) {
+	if helper472(word, root, node, index+1, found, count) {
 		return true
 	}
 
 	if node.isWord {
 		val, exists := found[word[index+1:]]
-		if exists && val {
-			return true
-		}
-
-		val, exists = notFound[word[index+1:]]
-		if exists && val {
-			return false
+		if exists {
+			return val
 		}
 
 		(*count)++
-		val = helper472(word, root, root, index+1, found, notFound, count)
+		val = helper472(word, root, root, index+1, found, count)
+		found[word[index+1:]] = val
 		if val {
-			return val
-		} else {
-			notFound[word[index+1:]] = true
+			return true
 		}
 
 		(*count)--
