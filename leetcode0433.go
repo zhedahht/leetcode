@@ -28,7 +28,7 @@ func minMutation(startGene string, endGene string, bank []string) int {
 			break
 		}
 
-		for i := range len(gene) {
+		for i := range gene {
 			chars := []byte{'A', 'C', 'G', 'T'}
 			for _, ch := range chars {
 				if gene[i] != ch {
