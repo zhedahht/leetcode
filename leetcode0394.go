@@ -13,7 +13,6 @@ func decodeString(s string) string {
 	strs := make([]string, 0)
 	nums := make([]int, 0)
 	for i := 0; i < len(s); {
-		fmt.Println(s, i)
 		if s[i] >= '0' && s[i] <= '9' {
 			num := 0
 			for s[i] >= '0' && s[i] <= '9' {
